@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventaire REP</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background:#fff;
+    padding:15px;
+}
+h1 { text-align:center; }
+.card {
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+}
+.item {
+    display:flex;
+    align-items:center;
+    margin-bottom:12px;
+}
+.item input {
+    width:24px;
+    height:24px;
+    margin-right:12px;
+}
+textarea {
+    width:100%;
+    min-height:100px;
+    padding:10px;
+    font-size:16px;
+}
+button {
+    width:100%;
+    padding:15px;
+    font-size:18px;
+    background:#007bff;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+<div style="text-align:center; margin-bottom:15px;">
+    <img src="logo_sdis76.jpg" alt="Logo SDIS 76"
+         style="max-width:120px; width:100%;">
+</div>
+
+<h1>Inventaire MPR</h1>
+
+<div class="card">
+    <input type="text" id="nom" placeholder="Nom" style="width:100%;padding:10px;"><br><br>
+    <input type="date" id="date" style="width:100%;padding:10px;">
+</div>
+
+<div class="card" id="inventaire">
+    <div class="item"><input type="checkbox" value="Tuyau 70x20m / Qte x4">Tuyau 70x20m / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Tuyau 45x20m / Qte x5">Tuyau 45x20m / Qte x5</div>
+    <div class="item"><input type="checkbox" value="Sceau / Qte x1">Sceau / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Raclette / Qte x3">Raclette / Qte x3</div>
+    <div class="item"><input type="checkbox" value="Projecteur / Qte x2">Projecteur / Qte x2</div>
+    <div class="item"><input type="checkbox" value="Jerrycan d'essence / Qte x1">Jerrycan d'essence / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Bidon d'eau / Qte x1">Bidon d'eau / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Crépine / Qte x2">Crépine / Qte x2</div>
+    <div class="item"><input type="checkbox" value="Enrouleur de cable / Qte x3">Enrouleur de cable / Qte x3</div>
+    <div class="item"><input type="checkbox" value="Pompe éléctrique / Qte x2">Pompe éléctrique / Qte x2</div>
+    <div class="item"><input type="checkbox" value="Groupe éléctrogène / Qte x1">Groupe éléctrogène / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Pompe thermique / Qte x2">Pompe thermique / Qte x2</div>
+    <div class="item"><input type="checkbox" value="Cale de roue / Qte x2">Cale de roue / Qte x2</div>
+    <div class="item"><input type="checkbox" value="Tricoise / Qte x4">Tricoise / Qte x4</div>
+    <div class="item"><input type="checkbox" value="Aspiraux 65x2m / Qte x6">Aspiraux 65x2m / Qte x6</div>
+</div>
+
+<!-- OBSERVATIONS -->
+<div class="card">
+    <h3>Observations</h3>
+    <textarea id="observations" placeholder="Matériel manquant, défectueux, remarques..."></textarea>
+</div>
+
+<button onclick="genererPDF()">📄 Générer le PDF</button>
+
+<script>
+function genererPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    let y = 15;
+    doc.setFontSize(14);
+    doc.text("Inventaire REP", 10, y);
+
+    y += 10;
+    doc.setFontSize(11);
+    doc.text("Nom : " + document.getElementById("nom").value, 10, y);
+    y += 7;
+    doc.text("Date : " + document.getElementById("date").value, 10, y);
+
+    y += 10;
+    doc.setFontSize(12);
+    doc.text("Inventaire :", 10, y);
+    y += 8;
+    doc.setFontSize(10);
+
+    document.querySelectorAll("#inventaire input").forEach(cb => {
+        let ligne = (cb.checked ? "[X] " : "[ ] ") + cb.value;
+        doc.text(ligne, 10, y);
+        y += 6;
+        if (y > 270) {
+            doc.addPage();
+            y = 15;
+        }
+    });
+
+    y += 10;
+    doc.setFontSize(12);
+    doc.text("Observations :", 10, y);
+    y += 6;
+    doc.setFontSize(10);
+
+    let obs = document.getElementById("observations").value || "Aucune";
+    doc.text(doc.splitTextToSize(obs, 180), 10, y);
+
+    doc.save("Inventaire_REP.pdf");
+}
+</script>
+
+</body>
+</html>
