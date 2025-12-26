@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventaire VTUBS</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background:#fff;
+    padding:15px;
+}
+h1 { text-align:center; }
+.card {
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+}
+.item {
+    display:flex;
+    align-items:center;
+    margin-bottom:12px;
+}
+.item input {
+    width:24px;
+    height:24px;
+    margin-right:12px;
+}
+textarea {
+    width:100%;
+    min-height:100px;
+    padding:10px;
+    font-size:16px;
+}
+.section {
+   font-weight:bold;
+   margin:10px 0;
+}
+button {
+    width:100%;
+    padding:15px;
+    font-size:18px;
+    background:#007bff;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+<div style="text-align:center; margin-bottom:15px;">
+    <img src="logo_sdis76.jpg" alt="Logo SDIS 76"
+         style="max-width:120px; width:100%;">
+</div>
+
+<h1>Inventaire VTUBS</h1>
+
+<div class="card">
+    <input type="text" id="nom" placeholder="Nom" style="width:100%;padding:10px;"><br><br>
+    <input type="date" id="date" style="width:100%;padding:10px;">
+</div>
+
+<div class="card" id="inventaire">
+
+<div class="section">CABINE AVANT</div>
+    <div class="item"><input type="checkbox" value="Carnet de message / Qte x1">Carnet de message / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Poste émetteur/récepteur / Qte x1">Poste émetteur/récepteur / Qte x1</div>
+<div class="item"><input type="checkbox" value="Projecteur orientable 12 V / Qte x1">Projecteur orientable 12 V / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Petite pince / Qte x1">Petite pince / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Triangle de pré signalisation / Qte x1">Triangle de pré signalisation / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Gilet haute visibilité / Qte x3">Gilet haute visibilité / Qte x3</div>
+<div class="item"><input type="checkbox" value="Clé démonte roue / Qte x1">Clé démonte roue / Qte x1</div>
+<div class="item"><input type="checkbox" value="Cric / Qte x1">Cric / Qte x1</div>
+<div class="item"><input type="checkbox" value="Cale de roue / Qte x1">Cale de roue / Qte x1</div>
+    
+
+<div class="section">CELLULE ARRIERE</div>
+<div class="item"><input type="checkbox" value="Balai cantonnier / Qte x1">Balai cantonnier / Qte x1</div>
+<div class="item"><input type="checkbox" value="Burin / Qte x1">Burin / Qte x1</div>
+<div class="item"><input type="checkbox" value="Clé à molette / Qte x">Clé à molette / Qte x1</div>
+<div class="item"><input type="checkbox" value="Commande / Qte x1">Commande / Qte x1</div>
+<div class="item"><input type="checkbox" value="Cordage / Qte x1">Cordage / Qte x1</div>
+<div class="item"><input type="checkbox" value="Coupe boulons / Qte x1">Coupe boulons / Qte x1</div>
+<div class="item"><input type="checkbox" value="Décintoire / Qte x1">Décintoire / Qte x1</div>
+<div class="item"><input type="checkbox" value="Échelle 2 m / Qte x1">Échelle 2 m / Qte x1</div>
+<div class="item"><input type="checkbox" value="Gaffe / Qte x1">Gaffe / Qte x1</div>
+<div class="item"><input type="checkbox" value="Grande pince / Qte x1">Grande pince / Qte x1</div>
+<div class="item"><input type="checkbox" value="Hachette / Qte x1">Hachette / Qte x1</div>
+<div class="item"><input type="checkbox" value="Lot de sauvetage / Qte x1">Lot de sauvetage / Qte x1</div>
+<div class="item"><input type="checkbox" value="Manivelle du porte échelle de toit / Qte x1">Manivelle du porte échelle de toit / Qte x1</div>
+<div class="item"><input type="checkbox" value="Marteau / Massette / Qte x1">Marteau / Massette / Qte x1</div>
+<div class="item"><input type="checkbox" value="Masse / Qte x1">Masse / Qte x1</div>
+<div class="item"><input type="checkbox" value="Pelle / Qte x1">Pelle / Qte x1</div>
+<div class="item"><input type="checkbox" value="Pince multi-prises / Qte x1">Pince multi-prises / Qte x1</div>
+<div class="item"><input type="checkbox" value="Pioche / Qte x1">Pioche / Qte x1</div>
+<div class="item"><input type="checkbox" value="Pointerolle / Qte x1">Pointerolle / Qte x1</div>
+<div class="item"><input type="checkbox" value="Rouleau rubalise / Qte x1">Rouleau rubalise / Qte x1</div>
+<div class="item"><input type="checkbox" value="Sangle d'arrimage matériel / Qte x2">Sangle d'arrimage matériel / Qte x2</div>
+<div class="item"><input type="checkbox" value="Scie à métaux / Qte x1">Scie à métaux / Qte x1</div>
+<div class="item"><input type="checkbox" value="Scie égoïne / Qte x1">Scie égoïne / Qte x1</div>
+<div class="item"><input type="checkbox" value="Tournevis plat / Qte x1">Tournevis plat / Qte x1</div>
+<div class="item"><input type="checkbox" value="Grille de maintien du matériel / Qte x1">Grille de maintien du matériel / Qte x1</div>
+<div class="item"><input type="checkbox" value="Lampes porto / Qte x3">Lampes porto / Qte x3</div>
+<div class="item"><input type="checkbox" value="Valise portable d’éclairage / Qte x1">Valise portable d’éclairage / Qte x1</div>
+<div class="item"><input type="checkbox" value="Triangles de signalisation triflash / Qte x2">Triangles de signalisation triflash/ Qte x2</div>
+<div class="item"><input type="checkbox" value="Cônes de signalisation / Qte x24">Cônes de signalisation / Qte x24</div>
+<div class="item"><input type="checkbox" value="Lampes flash de balisage / Qte x5">Lampes flash de balisage / Qte x5</div>
+<div class="item"><input type="checkbox" value="Coffret de 6 balisettes de balisage / Qte x2">Coffret de 6 balisettes de balisage / Qte x2</div>
+<div class="item"><input type="checkbox" value="Bombe de marquage / Qte x1">Bombe de marquage / Qte x1</div>
+<div class="item"><input type="checkbox" value="Chariot pour transport de cônes / Qte x1">Chariot pour transport de cônes / Qte x1</div>
+<div class="item"><input type="checkbox" value="Bombe de marquage / Qte x1">Bombe de marquage / Qte x1</div>
+<div class="item"><input type="checkbox" value="Coupe ceinture / Qte x1">Coupe ceinture / Qte x1</div>
+<div class="item"><input type="checkbox" value="Brise vitre / Qte x1">Brise vitre / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse d'absorbant / Qte x1">Caisse d'absorbant / Qte x1</div>
+<div class="item"><input type="checkbox" value="Extincteur poudre 9 kg / Qte x1">Extincteur poudre 9 kg / Qte x1</div>
+
+<div class="section">TOIT DE L'ENGIN</div>
+<div class="item"><input type="checkbox" value="Échelle à coulisse 2 plans / Qte x1">Échelle à coulisse 2 plans / Qte x1</div>
+<div class="item"><input type="checkbox" value="Échelle à crochets / Qte x1">Échelle à crochets / Qte x1</div>
+<div class="item"><input type="checkbox" value="ÉTriangle de signalisation relevable / Qte x1">Triangle de signalisation relevable / Qte x1</div>
+
+</div>
+
+<!-- OBSERVATIONS -->
+<div class="card">
+    <h3>Observations</h3>
+    <textarea id="observations" placeholder="Matériel manquant, défectueux, remarques..."></textarea>
+</div>
+
+<button onclick="genererPDF()">📄 Générer l'inventaire en PDF</button>
+
+<script>
+function genererPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    let y = 15;
+
+    // TITRE
+    doc.setFontSize(14);
+    doc.text("Inventaire VTUBS", 10, y);
+    y += 10;
+
+    // INFOS
+    doc.setFontSize(11);
+    doc.text("Nom : " + document.getElementById("nom").value, 10, y);
+    y += 7;
+    const dateInput = document.getElementById("date").value;
+let dateFr = "";
+
+if (dateInput) {
+    const [annee, mois, jour] = dateInput.split("-");
+    dateFr = jour + "/" + mois + "/" + annee;
+}
+
+doc.text("Date : " + dateFr, 10, y);
+
+    y += 10;
+
+    const inventaire = document.getElementById("inventaire").children;
+
+    for (let i = 0; i < inventaire.length; i++) {
+        const el = inventaire[i];
+
+        // SECTION
+        if (el.classList.contains("section")) {
+            if (y > 260) { doc.addPage(); y = 15; }
+
+            y += 6;
+            doc.setFontSize(12);
+            doc.text(el.textContent.toUpperCase(), 10, y);
+            y += 6;
+        }
+
+        // ITEM
+        if (el.classList.contains("item")) {
+            const cb = el.querySelector("input");
+            const label = cb.value;
+            const ligne = (cb.checked ? "[X] " : "[ ] ") + label;
+
+            doc.setFontSize(10);
+            doc.text(ligne, 15, y);
+            y += 6;
+
+            if (y > 270) {
+                doc.addPage();
+                y = 15;
+            }
+        }
+    }
+
+    // OBSERVATIONS
+    y += 8;
+    if (y > 250) { doc.addPage(); y = 15; }
+
+    doc.setFontSize(12);
+    doc.text("OBSERVATIONS", 10, y);
+    y += 6;
+
+    doc.setFontSize(10);
+    const obs = document.getElementById("observations").value || "Aucune";
+    doc.text(doc.splitTextToSize(obs, 180), 10, y);
+
+    doc.save("Inventaire_VTUBS.pdf");
+}
+</script>
+
+
+</body>
+</html>
