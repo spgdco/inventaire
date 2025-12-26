@@ -132,7 +132,7 @@ function genererPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    let y = 20;
+    let y = 15;
 
     // TITRE
     doc.setFontSize(14);
@@ -146,32 +146,54 @@ function genererPDF() {
     doc.text("Date : " + document.getElementById("date").value, 10, y);
     y += 10;
 
-    // INVENTAIRE
-    doc.setFontSize(10);
-    document.querySelectorAll("#inventaire input").forEach(cb => {
-        let ligne = (cb.checked ? "[X] " : "[ ] ") + cb.value;
-        doc.text(ligne, 10, y);
-        y += 6;
-        if (y > 270) {
-            doc.addPage();
-            y = 15;
+    const inventaire = document.getElementById("inventaire").children;
+
+    for (let i = 0; i < inventaire.length; i++) {
+        const el = inventaire[i];
+
+        // SECTION
+        if (el.classList.contains("section")) {
+            if (y > 260) { doc.addPage(); y = 15; }
+
+            y += 6;
+            doc.setFontSize(12);
+            doc.text(el.textContent.toUpperCase(), 10, y);
+            y += 6;
         }
-    });
+
+        // ITEM
+        if (el.classList.contains("item")) {
+            const cb = el.querySelector("input");
+            const label = cb.value;
+            const ligne = (cb.checked ? "[X] " : "[ ] ") + label;
+
+            doc.setFontSize(10);
+            doc.text(ligne, 15, y);
+            y += 6;
+
+            if (y > 270) {
+                doc.addPage();
+                y = 15;
+            }
+        }
+    }
 
     // OBSERVATIONS
-    y += 10;
+    y += 8;
+    if (y > 250) { doc.addPage(); y = 15; }
+
     doc.setFontSize(12);
-    doc.text("Observations :", 10, y);
+    doc.text("OBSERVATIONS", 10, y);
     y += 6;
 
     doc.setFontSize(10);
-    let obs = document.getElementById("observations").value || "Aucune";
+    const obs = document.getElementById("observations").value || "Aucune";
     doc.text(doc.splitTextToSize(obs, 180), 10, y);
 
-    // SAUVEGARDE
     doc.save("Inventaire_CCGC.pdf");
 }
 </script>
+
 
 
 </body>
