@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventaire CCGC</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body { font-family: Arial, sans-serif; background:#fff; padding:15px; }
+h1 { text-align:center; }
+.card { background:#fff; border-radius:12px; padding:15px; margin-bottom:15px; }
+.section { font-weight:bold; margin:10px 0; }
+.item { display:flex; align-items:center; margin-bottom:10px; }
+.item input { width:24px; height:24px; margin-right:12px; }
+textarea { width:100%; min-height:100px; padding:10px; font-size:16px; }
+button { width:100%; padding:15px; font-size:18px; background:#007bff; color:#fff; border:none; border-radius:10px; }
+</style>
+</head>
+
+<body>
+
+<!-- LOGO -->
+<div style="text-align:center; margin-bottom:15px;">
+    <img src="logo_sdis76.jpg" style="max-width:120px;">
+</div>
+
+<h1>Inventaire CCGC</h1>
+
+<div class="card">
+    <input type="text" id="nom" placeholder="Nom" style="width:100%;padding:10px;"><br><br>
+    <input type="date" id="date" style="width:100%;padding:10px;">
+</div>
+
+<div class="card" id="inventaire">
+
+<div class="section">CABINE ARRIERE</div>
+<div class="item"><input type="checkbox" value="Gilet haute visiblité / Qte x3">Gilet haute visiblité / Qte x3</div>
+<div class="item"><input type="checkbox" value="Clé du véhicule">Clé du véhicule</div>
+<div class="item"><input type="checkbox" value="Masque FFP1 et FFP2">Masque FFP1 et FFP2</div>
+<div class="item"><input type="checkbox" value="Boite de gants">Boite de gants</div>
+<div class="item"><input type="checkbox" value="Lampe avec support / Qte x2">Lampe avec support / Qte x2</div>
+<div class="item"><input type="checkbox" value="Trousse de secours / Qte x1">Trousse de secours / Qte x1</div>
+<div class="item"><input type="checkbox" value="Plan forêt / Qte x1">Plan forêt / Qte x1</div>
+<div class="item"><input type="checkbox" value="Document forêt / Qte x1">Document forêt / Qte x1</div>
+<div class="item"><input type="checkbox" value="Classeur plan / Qte x2">Classeur plan / Qte x2</div>
+<div class="item"><input type="checkbox" value="Carnet de message / Qte x1">Carnet de message / Qte x1</div>
+
+<div class="section">COFFRE AVANT GAUCHE</div>
+<div class="item"><input type="checkbox" value="Aspiraux / Qte x4">Aspiraux / Qte x4</div>
+<div class="item"><input type="checkbox" value="Caisse casque F2 + bâche / Qte x1">Caisse casque F2 + bâche / Qte x1</div>
+<div class="item"><input type="checkbox" value="Barre descente piscine / Qte x1">Barre descente piscine / Qte x1</div>
+<div class="item"><input type="checkbox" value="Moto pompe flottante / Qte x1">Moto pompe flottante / Qte x1</div>
+<div class="item"><input type="checkbox" value="Jerrycan / Qte x1">Jerrican / Qte x1</div>
+<div class="item"><input type="checkbox" value="Crépine / Qte x1">Crépine / Qte x1</div>
+<div class="item"><input type="checkbox" value="Pochette noir avec kit / Qte x2">Pochette noir avec kit / Qte x2</div>
+<div class="item"><input type="checkbox" value="Extincteur poudre 9kg / Qte x1">Extincteur poudre 9kg / Qte x1</div>
+
+<div class="section">COFFRE ARRIERE GAUCHE</div>
+<div class="item"><input type="checkbox" value="Tuyaux 70x20m / Qte x4">Tuyaux 70x20m / Qte x4</div>
+<div class="item"><input type="checkbox" value="Clé bouche à incendie / Qte x1">Clé bouche à incendie / Qte x1</div>
+<div class="item"><input type="checkbox" value="Division simple 70/2x40 / Qte x1">Division simple 70/2x40 / Qte x1</div>
+<div class="item"><input type="checkbox" value="Division simple 100/2x65 / Qte x1">Division simple 100/2x65 / Qte x1</div>
+<div class="item"><input type="checkbox" value="Tuyaux 70x10m / Qte x1">Tuyaux 70x0m / Qte x1</div>
+<div class="item"><input type="checkbox" value="Tuyaux 100x10m / Qte x1">Tuyaux 100x20m / Qte x1</div>
+
+<div class="section">COFFRE AVANT DROIT</div>
+<div class="item"><input type="checkbox" value="Caisse avec cordage + serpe + petite pince / Qte x1">Caisse avec cordage + serpe + petite pince / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse prolongation électronique">Caisse prolongation électronique</div>
+<div class="item"><input type="checkbox" value="Casque F2">Casque F2</div>
+<div class="item"><input type="checkbox" value="Eau">Eau</div>
+
+<div class="section">COFFRE ARRIERE DROIT</div>
+<div class="item"><input type="checkbox" value="Injecteur proportionneur + canne plongeuse / Qte x1">Injecteur proportionneur + canne plongeuse  / Qte x1</div>
+<div class="item"><input type="checkbox" value="LM2 + LDMR500 + LDV1000">LM2 + LDMR500 + LDV1000</div>
+<div class="item"><input type="checkbox" value="Queue de paon / Qte x1">Queue de paon / Qte x1</div>
+<div class="item"><input type="checkbox" value="Division mixte 70/70 2x45 / Qte x1">Division mixte 70/70 / Qte x1</div>
+<div class="item"><input type="checkbox" value="Coupe boulon / Qte x1">Coupe boulon / Qte x1</div>
+<div class="item"><input type="checkbox" value="Commande / Qte x1">Commande / Qte x1</div>
+
+<div class="section">CAISSE DECONTAMINATION</div>
+<div class="item"><input type="checkbox" value="kit décontamination complet">Kit décontamination complet (Boîte de gants / rouleau de papier / sac poubelle/ lingettes / produit vaisselle / masque FFP3 / 3 chemises F1 / brosse / éponges /draps VSAV)</div>
+
+<div class="section">COFFRE ARRIERE</div>
+<div class="item"><input type="checkbox" value="Clé de poteau + 4 tricoises + manivelle + raccord de réduction + coude + retenue + collecteur">Clé de poteau + 4 tricoises + manivelle + raccord de réduction + coude + retenue + collecteur</div>
+
+<div class="section">ARRIERE DE L'ENGIN</div>
+<div class="item"><input type="checkbox" value="Dévidoir avec tuyaux de diamètre 45 20M + 1 LDMR avec sa vanne d'arrêt + rallonge remplissage piscine">Dévidoir avec tuyaux de diamètre 45 20M + 1 LDMR avec sa vanne d'arrêt + rallonge remplissage piscine</div>
+
+<div class="section">COFFRE DE TOIT</div>
+<div class="item"><input type="checkbox" value="Cône de lubeck / Qte x6">Cône de lubeck / Qte x6</div>
+<div class="item"><input type="checkbox" value="Crépine / Qte x1">Crépine/ Qte x1</div>
+<div class="item"><input type="checkbox" value="Flotteur / Qte x1">Flotteur / Qte x1</div>
+<div class="item"><input type="checkbox" value="Coupe boulon / Qte x1">Coupe boulon / Qte x1</div>
+<div class="item"><input type="checkbox" value="Batte à feu / Qte x1">Batte à feu / Qte x1</div>
+<div class="item"><input type="checkbox" value="Raclette / Qte x2">Raclette / Qte x1</div>
+<div class="item"><input type="checkbox" value="Masse / Qte x1">Masse / Qte x1</div>
+<div class="item"><input type="checkbox" value="Fourche droite + fourche recourbée">Fourche droite + fourche recourbé</div>
+<div class="item"><input type="checkbox" value="Pelle + pioche + hache">Pelle + pioche + hache</div>
+<div class="item"><input type="checkbox" value="Aspiraux / Qte x1">Aspiraux / Qte x1</div>
+<div class="item"><input type="checkbox" value="Adaptateur mousse canon / Qte x1">Adaptateur mousse canon / Qte x1</div>
+<div class="item"><input type="checkbox" value="Surpantalon tronçonneuse / Qte x1">Surpantalon tronçonneuse / Qte x1</div>
+<div class="item"><input type="checkbox" value="Jerrycan d'essence / Qte x1">Jerrycan d'essence / Qte x1</div>
+<div class="item"><input type="checkbox" value="Tronçonneuse / Qte x1">Tronçonneuse / Qte x1</div>
+<div class="item"><input type="checkbox" value="Lance canon avec tableau de contrôle / Qte x1">Lance canon avec tableau de contrôle / Qte x1</div>
+
+<div class="section">TOIT DE L'ENGIN</div>
+<div class="item"><input type="checkbox" value="Piscine + bâche">Piscine + bâche</div>
+
+
+</div>
+
+<!-- OBSERVATIONS -->
+<div class="card">
+    <h3>Observations</h3>
+    <textarea id="observations" placeholder="Matériel manquant, défectueux, remarques..."></textarea>
+</div>
+
+<button onclick="genererPDF()">📄 Générer le PDF</button>
+
+<script>
+function genererPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    let y = 20;
+
+    // TITRE
+    doc.setFontSize(14);
+    doc.text("Inventaire CCGC", 10, y);
+    y += 10;
+
+    // INFOS
+    doc.setFontSize(11);
+    doc.text("Nom : " + document.getElementById("nom").value, 10, y);
+    y += 7;
+    doc.text("Date : " + document.getElementById("date").value, 10, y);
+    y += 10;
+
+    // INVENTAIRE
+    doc.setFontSize(10);
+    document.querySelectorAll("#inventaire input").forEach(cb => {
+        let ligne = (cb.checked ? "[X] " : "[ ] ") + cb.value;
+        doc.text(ligne, 10, y);
+        y += 6;
+        if (y > 270) {
+            doc.addPage();
+            y = 15;
+        }
+    });
+
+    // OBSERVATIONS
+    y += 10;
+    doc.setFontSize(12);
+    doc.text("Observations :", 10, y);
+    y += 6;
+
+    doc.setFontSize(10);
+    let obs = document.getElementById("observations").value || "Aucune";
+    doc.text(doc.splitTextToSize(obs, 180), 10, y);
+
+    // SAUVEGARDE
+    doc.save("Inventaire_CCGC.pdf");
+}
+</script>
+
+
+</body>
+</html>
