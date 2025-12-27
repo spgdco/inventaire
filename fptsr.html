@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventaire FPTSR</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body { font-family: Arial, sans-serif; background:#fff; padding:15px; }
+h1 { text-align:center; }
+.card { background:#fff; border-radius:12px; padding:15px; margin-bottom:15px; }
+.section { font-weight:bold; margin:10px 0; }
+.item { display:flex; align-items:center; margin-bottom:10px; }
+.item input { width:24px; height:24px; margin-right:12px; }
+textarea { width:100%; min-height:100px; padding:10px; font-size:16px; }
+button { width:100%; padding:15px; font-size:18px; background:#007bff; color:#fff; border:none; border-radius:10px; }
+</style>
+</head>
+
+<body>
+
+<!-- LOGO -->
+<div style="text-align:center; margin-bottom:15px;">
+    <img src="logo_sdis76.jpg" style="max-width:120px;">
+</div>
+
+<h1>Inventaire FPTSR</h1>
+
+<div class="card">
+    <input type="text" id="nom" placeholder="Nom et prénom" style="width:100%;padding:10px;"><br><br>
+    <input type="date" id="date" style="width:100%;padding:10px;">
+</div>
+
+<div class="card" id="inventaire">
+
+<div class="section">CABINE AVANT</div>
+<div class="item"><input type="checkbox" value="Gilet haute visiblité / Qte x2">Gilet haute visiblité / Qte x2</div>
+<div class="item"><input type="checkbox" value="Clé du véhicule">Clé du véhicule</div>
+<div class="item"><input type="checkbox" value="Sangle d'amarrage / Qte x1">Sangle d'amarrage / Qte x1</div>
+<div class="item"><input type="checkbox" value="Clé ville">Clé ville</div>
+<div class="item"><input type="checkbox" value="Télécommande projecteur / Qte x1">Télécommande projecteur / Qte x1</div>
+<div class="item"><input type="checkbox" value="Rouleau de rubalise / Qte x1">Rouleau de rubalise / Qte x1</div>
+<div class="item"><input type="checkbox" value="Boite clé gaz / Qte x1">Boite clé gaz / Qte x1</div>
+<div class="item"><input type="checkbox" value="Commande treuil / Qte x1">Commande treuil / Qte x1</div>
+<div class="item"><input type="checkbox" value="Classeur plan / Qte x2">Classeur plan / Qte x2</div>
+<div class="item"><input type="checkbox" value="Carnet de message / Qte x1">Carnet de message / Qte x1</div>
+<div class="item"><input type="checkbox" value="Kit 1er secours / Qte x1">Kit 1er secours / Qte x1</div>
+<div class="item"><input type="checkbox" value="Pochette bleue avec document / Qte x1">Pochette bleue avec document / Qte x1</div>
+<div class="item"><input type="checkbox" value="Projecteur portatif / Qte x2">Projecteur portatif / Qte x2</div>
+
+<div class="section">CABINE ARRIERE</div>
+<div class="item"><input type="checkbox" value="ARI / Qte x6">ARI / Qte x6</div>
+<div class="item"><input type="checkbox" value="Masque ARI / Qte x7">Masque ARI / Qte x7</div>
+<div class="item"><input type="checkbox" value="Gilet haute visibilité / Qte x6">Gilet haute visibilité / Qte x6</div>
+<div class="item"><input type="checkbox" value="Cagoule de survie/ Qte x1">Cagoule de survie / Qte x1</div>
+<div class="item"><input type="checkbox" value="Extincteur CO / Qte x1">Extincteur CO / Qte x1</div>
+<div class="item"><input type="checkbox" value="Commande en sac / Qte x2">JCommande en sac / Qte x2</div>
+<div class="item"><input type="checkbox" value="Bouteille ARI (sous banquette) / Qte x6">CBouteille ARI (sous banquette) / Qte x6</div>
+<div class="item"><input type="checkbox" value="Extincteur poudre 9kg / Qte x1">Extincteur poudre 9kg / Qte x1</div>
+
+<div class="section">COFFRE AVANT DROIT</div>
+<div class="item"><input type="checkbox" value="Flexible orange 10m / Qte x2">Flexible orange 10m / Qte x2</div>
+<div class="item"><input type="checkbox" value="Flexible bleu 10m / Qte x2">Flexible bleu 10m / Qte x2</div>
+<div class="item"><input type="checkbox" value="Groupe hydraulique / Qte x1">Groupe hydraulique / Qte x1</div>
+<div class="item"><input type="checkbox" value="Ecarteur / Qte x1">Ecarteur / Qte x1</div>
+<div class="item"><input type="checkbox" value="Cisaille / Qte x1">Cisaille / Qte x1</div>
+<div class="item"><input type="checkbox" value="Grand vérin / Qte x1">Grand vérin / Qte x1</div>
+<div class="item"><input type="checkbox" value="Moyen vérin / Qte x1">Moyen vérin / Qte x1</div>
+<div class="item"><input type="checkbox" value="Petit vérin / Qte x1">Petit vérin / Qte x1</div>
+<div class="item"><input type="checkbox" value="Serpe / Qte x1">Serpe / Qte x1</div>
+<div class="item"><input type="checkbox" value="Coupe câble de batterie/ Qte x1">Coupe câble de batterie / Qte x1</div>
+<div class="item"><input type="checkbox" value="Masse / Qte x1">Masse / Qte x1</div>
+<div class="item"><input type="checkbox" value="Coupe pare-brise manuel/ Qte x1">Coupe pare-brise manuel/ Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse de 2 jeux de chaines + crochet + manille / Qte x1">Caisse de 2 jeux de chaines + crochet + manille / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse coupe pédale / Qte x1">Caisse coupe pédale / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse de protections / Qte x1">Caisse de protections / Qte x1</div>
+<div class="item"><input type="checkbox" value="Cale en escalier / Qte x2">Cale escalier / Qte x2</div>
+<div class="item"><input type="checkbox" value="Sabot d'appui vérin / Qte x2">Sabot d'appui vérin / Qte x2</div>
+<div class="item"><input type="checkbox" value="Cale bois 1m20 / Qte x4">Cale bois 1m20 / Qte x4</div>
+<div class="item"><input type="checkbox" value="Coussin de levage (petit + moyen + grand) / Qte x3">Coussin de levage (petit + moyen + grand) / Qte x3</div>
+<div class="item"><input type="checkbox" value="Caisse cale néoprène (6 cales carrées + 5 coins grand modèle + 6 coins petit modèle)/ Qte x1">Caisse cale néoprène (6 cales carrées + 5 coins grand modèle + 6 coins petit modèle)/ Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse élingue (élingue textile 3,5T + élingue textile 2T + manille + poulie +bache) / Qte x1">Caisse élingue (élingue textile 3,5T + élingue textile 2T + manille + poulie +bache) / Qte x1</div>
+
+<div class="section">COFFRE MILIEU DROIT</div>
+<div class="item"><input type="checkbox" value="Caisse bâche avec balayette / Qte x1">Caisse bâche avec balayette / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse éclairage avec projecteur / Qte x1">Caisse éclairage avec projecteur / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse absorbant / Qte x1">Caisse absorbant / Qte x1</div>
+<div class="item"><input type="checkbox" value="Valise éléctrosecours / Qte x1">Valise éléctrosecours / Qte x1</div>
+<div class="item"><input type="checkbox" value="Protection de coupe / Qte x1">Protection de coupe / Qte x1</div>
+<div class="item"><input type="checkbox" value="Boite à chiffon (sac rouge + protection jaune) / Qte x1">Boite à chiffon (sac rouge + protection jaune) / Qte x1</div>
+<div class="item"><input type="checkbox" value="Tir fort avec câble / Qte x1">Tir fort avec câble / Qte x1</div>
+<div class="item"><input type="checkbox" value="Barre / Qte x1">Barre / Qte x1</div>
+<div class="item"><input type="checkbox" value="Protection airbag / Qte x1">Protection airbag / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse éclairage avec rouleau de rubalise / Qte x1">Caisse éclairage avec rouleau de rubalise / Qte x1</div>
+<div class="item"><input type="checkbox" value="Valise verte SR / Qte x1">Valise verte SR / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse lapidaire (lapidaire + clé + disque + pince étaux + rubalise + cable mise à la terre) / Qte x1">Caisse lapidaire (lapidaire + clé + disque + pince étaux + rubalise + cable mise à la terre) / Qte x1</div>
+
+<div class="section">COFFRE ARRIERE DROIT</div>
+<div class="item"><input type="checkbox" value="Touret éléctrique / Qte x3">HTouret éléctrique / Qte x3</div>
+<div class="item"><input type="checkbox" value="Trépied éclairage / Qte x2">Trépied éclairage / Qte x2</div>
+<div class="item"><input type="checkbox" value="Pompe hydraulique manuelle / Qte x1">Pompe hydraulique manuelle / Qte x11</div>
+<div class="item"><input type="checkbox" value="Flexible souple / Qte x1">Flexible souple / Qte x1</div>
+<div class="item"><input type="checkbox" value="Cône de signalisation / Qte x10">Cône de signalisation / Qte x10</div>
+<div class="item"><input type="checkbox" value="Trépied jaune / Qte x1">Trépied jaune / Qte x1</div>
+<div class="item"><input type="checkbox" value="Triflash / Qte x2">Triflash / Qte x2</div>
+<div class="item"><input type="checkbox" value="Flash clignotant jaune / Qte x5">Flash clignotant jaune / Qte x5</div>
+
+
+<div class="section">COFFRE AVANT GAUCHE</div>
+<div class="item"><input type="checkbox" value="Masse / Qte x1">Masse / Qte x1</div>
+<div class="item"><input type="checkbox" value="Halligan / Qte x1">Halligan / Qte x1</div>
+<div class="item"><input type="checkbox" value="Coupe boulon /Qte x1">Coupe boulon / Qte x1</div>
+<div class="item"><input type="checkbox" value="Hachette / Qte x1">Hachette / Qte x1</div>
+<div class="item"><input type="checkbox" value="Scie égoïne / Qte x1">Scie égoïne / Qte x1</div>
+<div class="item"><input type="checkbox" value="Echelle téléscopique / Qte x1">Echelle téléscopique / Qte x1</div>
+<div class="item"><input type="checkbox" value="Lot portable oxygénothérapie / Qte x1">BLot portable oxygénothérapie /Qte x1</div>
+<div class="item"><input type="checkbox" value="Sac d'abordage / Qte x1">Sac d'abordage / Qte x1</div>
+<div class="item"><input type="checkbox" value="Canne plongeuse / Qte x1">Canne plongeuse / Qte x1</div>
+<div class="item"><input type="checkbox" value="Cale de roue / Qte x2">ale de roue / Qte x2</div>
+<div class="item"><input type="checkbox" value="Aspiraux / Qte x7">Aspiraux / Qte x7</div>
+<div class="item"><input type="checkbox" value="Pulvérisateur / Qte x1">Pulvérisateur / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse avec cordage / Qte x1">Caisse avec cordage / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse feu de cheminée (1 pelle + 4 gants + 2 rétro +1 burin + 1 pointerole + 1 massette) / Qte x1">Caisse feu de cheminée (1 pelle + 4 gants + 2 rétro +1 burin + 1 pointerole + 1 massette) / Qte x1</div>
+<div class="item"><input type="checkbox" value="LAT (2 tuyaux DN 45x20m en Z + 1 tuyau DN 45x20m en O + LDV) / Qte x1">LAT (2 tuyaux DN 45x20m + 1 tuyau DN 45x20m + LDV) / Qte x1</div>
+<div class="item"><input type="checkbox" value="DAT (3 tuyaux DN 70x20mu en Z + division) / Qte x1">DAT (3 tuyaux DN 70x20m en Z + division) / Qte x1</div>
+<div class="item"><input type="checkbox" value="DAL (2 tuyaux DN 70x20mu en Z + division) / Qte x1">DAL (2 tuyaux DN 70x20mu en Z + division) / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse tronçonneuse (1 tronçonneuse + 1 pantalon + huile de chaine + mélange + 1 bougie + 1 clé bougie + bouchons d'oreilles) / Qte x1">Caisse tronçonneuse (1 tronçonneuse + 1 pantalon + huile de chaine + mélange + 1 bougie + 1 clé bougie + bouchons d'oreilles) / Qte x1</div>
+<div class="item"><input type="checkbox" value="Matériel cheminée (Seau + 2 hérissons + 2 boulets + 2 chaines) / Qte x1">Matériel cheminée (Sceau + 2 hérissons + 2 boulets + 2 chaines) / Qte x1</div>
+
+
+<div class="section">COFFRE MILIEU GAUCHE</div>
+<div class="item"><input type="checkbox" value="Tuyau DN 45x20m / Qte x7">Tuyau DN 45x20m / Qte x7</div>
+<div class="item"><input type="checkbox" value="Tuyau DN 70x20m / Qte x5">Tuyau DN 70x20m / Qte x5</div>
+<div class="item"><input type="checkbox" value="Clé de bouche incendie/ Qte x1">Clé de bouche incendie / Qte x1</div>
+<div class="item"><input type="checkbox" value="Lance feu éléctrique / Qte x1">TLance feu éléctrique / Qte x1</div>
+<div class="item"><input type="checkbox" value="Lance canon / Qte x1">TLance canon / Qte x1</div>
+<div class="item"><input type="checkbox" value="LM2 / Qte x1">LM2 / Qte x1</div>
+<div class="item"><input type="checkbox" value="LM4 / Qte x1">LM4 / Qte x1</div>
+<div class="item"><input type="checkbox" value="Rallonge canne pour hérisson / Qte x4">Rallonge canne pour hérisson / Qte x4</div>
+<div class="item"><input type="checkbox" value="Lot de sauvetage / Qte x1">Lot de sauvetage / Qte x1</div>
+
+<div class="section">COFFRE ARRIERE GAUCHE</div>
+<div class="item"><input type="checkbox" value="Flotteur / Qte x2">Flotteur / Qte x2</div>
+<div class="item"><input type="checkbox" value="Crépine / Qte x2">Crépine / Qte x2</div>
+<div class="item"><input type="checkbox" value="Caisse bouteilles d'eau / Qte x1">Caisse bouteilles d'eau / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse TMD / Qte x1">Caisse TMD / Qte x1</div>
+<div class="item"><input type="checkbox" value="Lance feu de cheminée / Qte x1">Lance feu de cheminée / Qte x1</div>
+<div class="item"><input type="checkbox" value="Collecteur d'alimentation / Qte x2">Collecteur d'alimentation / Qte x2</div>
+<div class="item"><input type="checkbox" value="Retenue / Qte x1">Retenue / Qte x1</div>
+<div class="item"><input type="checkbox" value="Division DN 65/2x40 / Qte x1">Division DN 65/2x40 / Qte x1</div>
+<div class="item"><input type="checkbox" value="Coude d'alimentation / Qte x1">Coude d'alimentation / Qte x1</div>
+<div class="item"><input type="checkbox" value="Raccord de réduction / Qte x4">Raccord de réduction / Qte x42</div>
+<div class="item"><input type="checkbox" value="Tricoise de 100 / Qte x2">Tricoise de 100 / Qte x2</div>
+<div class="item"><input type="checkbox" value="Tricoise de 140 / Qte x1">Tricoise de 40 / Qte x1</div>
+<div class="item"><input type="checkbox" value="Tuyau DN 70x10m / Qte x1">Tuyau DN 70x10m / Qte x1</div>
+<div class="item"><input type="checkbox" value="Caisse à outils / Qte x1">Caisse à outils / Qte x1</div>
+<div class="item"><input type="checkbox" value="Bobino + 3 plaques de dérivation / Qte x1">Bobino + 3 plaques de dérivation / Qte x1</div>
+<div class="item"><input type="checkbox" value="Tableau de contrôle + feutres / Qte x1">Tableau de contrôle + feutres / Qte x1</div>
+<div class="item"><input type="checkbox" value="Groupe éléctrogène + mise à a la terre / Qte x1">Groupe éléctrogène + mise à a la terre / Qte x1</div>
+<div class="item"><input type="checkbox" value="Jerrycan d'essence + bec verseur / Qte x1">Jerrycan d'essence + bec verseur / Qte x1</div>
+
+<div class="section">COFFRE DE TOIT</div>
+<div class="item"><input type="checkbox" value="Balai de cantonnier / Qte x2">Balai de cantonnier / Qte x2</div>
+<div class="item"><input type="checkbox" value="Fourche droite / Qte x1">Fouche droite/ Qte x1</div>
+<div class="item"><input type="checkbox" value="Fourche recourbée / Qte x1">Fourche recourbée / Qte x1</div>
+<div class="item"><input type="checkbox" value="Batte à feu / Qte x3">Batte à feu / Qte x3</div>
+<div class="item"><input type="checkbox" value="Pelle / Qte x2">Pelle / Qte x2</div>
+<div class="item"><input type="checkbox" value="Extincteur poudre 9kg / Qte x1">Extincteur poudre 9kg  / Qte x1</div>
+<div class="item"><input type="checkbox" value="Pioche / Qte x1">Pioche / Qte x1</div>
+<div class="item"><input type="checkbox" value="Grand pince / Qte x1">Grand pince / Qte x1</div>
+<div class="item"><input type="checkbox" value="Barre de levage cabine / Qte x1">Barre de levage cabine / Qte x1</div>
+<div class="item"><input type="checkbox" value="Gaffe + rallonge / Qte x1">Gaffe + rallonge / Qte x1</div>
+
+
+<div class="section">TOIT DE L'ENGIN</div>
+<div class="item"><input type="checkbox" value="Echelle à coulisse 2 plans / Qte x1">Echelle à coulisse 2 plans / Qte x1</div>
+<div class="item"><input type="checkbox" value="Echelle à crochet / Qte x1">Echelle à crochet / Qte x1</div>
+
+<div class="section">ARRIERE DE L'ENGIN</div>
+<div class="item"><input type="checkbox" value="Tuyau DN 110x10m / Qte x1">Tuyau DN 110x10m / Qte x1</div>
+<div class="item"><input type="checkbox" value="Clé de poteau / Qte x1">Clé de poteau / Qte x1</div>
+<div class="item"><input type="checkbox" value="Dévidoir (5 tuyaux DN 70x40) / Qte x2">Dévidoir (5 tuyaux DN 70x40) / Qte x2</div>
+
+</div>
+
+<!-- OBSERVATIONS -->
+<div class="card">
+    <h3>Observations</h3>
+    <textarea id="observations" placeholder="Matériel manquant, défectueux, remarques..."></textarea>
+</div>
+
+<button onclick="genererPDF()">📄 Générer l'inventaire en PDF</button>
+
+<script>
+function genererPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    let y = 15;
+
+    // TITRE
+    doc.setFontSize(14);
+    doc.text("Inventaire FPTSR", 10, y);
+    y += 10;
+
+    // INFOS
+    doc.setFontSize(11);
+    doc.text("Nom : " + document.getElementById("nom").value, 10, y);
+    y += 7;
+    const dateInput = document.getElementById("date").value;
+let dateFr = "";
+
+if (dateInput) {
+    const [annee, mois, jour] = dateInput.split("-");
+    dateFr = jour + "/" + mois + "/" + annee;
+}
+
+doc.text("Date : " + dateFr, 10, y);
+
+    y += 10;
+
+    const inventaire = document.getElementById("inventaire").children;
+
+    for (let i = 0; i < inventaire.length; i++) {
+        const el = inventaire[i];
+
+        // SECTION
+        if (el.classList.contains("section")) {
+            if (y > 260) { doc.addPage(); y = 15; }
+
+            y += 6;
+            doc.setFontSize(12);
+            doc.text(el.textContent.toUpperCase(), 10, y);
+            y += 6;
+        }
+
+        // ITEM
+        if (el.classList.contains("item")) {
+            const cb = el.querySelector("input");
+            const label = cb.value;
+            const ligne = (cb.checked ? "[X] " : "[ ] ") + label;
+
+            doc.setFontSize(10);
+            doc.text(ligne, 15, y);
+            y += 6;
+
+            if (y > 270) {
+                doc.addPage();
+                y = 15;
+            }
+        }
+    }
+
+    // OBSERVATIONS
+    y += 8;
+    if (y > 250) { doc.addPage(); y = 15; }
+
+    doc.setFontSize(12);
+    doc.text("OBSERVATIONS", 10, y);
+    y += 6;
+
+    doc.setFontSize(10);
+    const obs = document.getElementById("observations").value || "Aucune";
+    doc.text(doc.splitTextToSize(obs, 180), 10, y);
+
+    doc.save("Inventaire_FPTSR.pdf");
+}
+</script>
+
+
+
+</body>
+</html>
