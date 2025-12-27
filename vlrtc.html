@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventaire VLRTC</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background:#fff;
+    padding:15px;
+}
+h1 { text-align:center; }
+.card {
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+}
+.item {
+    display:flex;
+    align-items:center;
+    margin-bottom:12px;
+}
+.item input {
+    width:24px;
+    height:24px;
+    margin-right:12px;
+}
+textarea {
+    width:100%;
+    min-height:100px;
+    padding:10px;
+    font-size:16px;
+}
+.section {
+   font-weight:bold;
+   margin:10px 0;
+}
+button {
+    width:100%;
+    padding:15px;
+    font-size:18px;
+    background:#007bff;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+<div style="text-align:center; margin-bottom:15px;">
+    <img src="logo_sdis76.jpg" alt="Logo SDIS 76"
+         style="max-width:120px; width:100%;">
+</div>
+
+<h1>Inventaire VLRTC</h1>
+
+<div class="card">
+    <input type="text" id="nom" placeholder="Nom et prénom" style="width:100%;padding:10px;"><br><br>
+    <input type="date" id="date" style="width:100%;padding:10px;">
+</div>
+
+<div class="card" id="inventaire">
+
+<div class="section">AVANT</div>
+    <div class="item"><input type="checkbox" value="Carnet de message / Qte x1">Carnet de message / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Poste émetteur/récepteur / Qte x1">Poste émetteur/récepteur / Qte x1</div>
+    <div class="item"><input type="checkbox" value="Gilet haute visibilité / Qte x3">Gilet haute visibilité / Qte x3</div>
+    
+
+<div class="section">COFFRE</div>
+<div class="item"><input type="checkbox" value="Cône de signalisation / Qte x2">Commande / Qte x2</div>
+<div class="item"><input type="checkbox" value="Petite pince / Qte x1">Petite pince / Qte x1</div>
+<div class="item"><input type="checkbox" value="Coupe boulon / Qte x1">Coupe boulon / Qte x1</div>
+<div class="item"><input type="checkbox" value="Commande / Qte x1">Commande / Qte x1</div>
+<div class="item"><input type="checkbox" value="Cordage / Qte x1">Cordage / Qte x1</div>
+<div class="item"><input type="checkbox" value="Valisette 1er secours / Qte x1">Valisette 1er secours / Qte x1</div>
+<div class="item"><input type="checkbox" value="Projecteur à main / Qte x1">Projecteur à main / Qte x1</div>
+<div class="item"><input type="checkbox" value="Pochette cric et clé demonte roue / Qte x1">Pochette cric et clé demonte roue / Qte x1</div>
+<div class="item"><input type="checkbox" value="Triangle de pré-signalisation / Qte x1">Triangle de pré-signalisation / Qte x1</div>
+<div class="item"><input type="checkbox" value="Extincteur à poudre 2 kg / Qte x1">Extincteur à poudre 2 kg / Qte x1</div>
+<div class="item"><input type="checkbox" value="Cale de roue / Qte x2">Cale de roue / Qte x2</div>
+
+</div>
+
+<!-- OBSERVATIONS -->
+<div class="card">
+    <h3>Observations</h3>
+    <textarea id="observations" placeholder="Matériel manquant, défectueux, remarques..."></textarea>
+</div>
+
+<button onclick="genererPDF()">📄 Générer l'inventaire en PDF</button>
+
+<script>
+function genererPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    let y = 15;
+
+    // TITRE
+    doc.setFontSize(14);
+    doc.text("Inventaire VLRTC", 10, y);
+    y += 10;
+
+    // INFOS
+    doc.setFontSize(11);
+    doc.text("Nom : " + document.getElementById("nom").value, 10, y);
+    y += 7;
+    const dateInput = document.getElementById("date").value;
+let dateFr = "";
+
+if (dateInput) {
+    const [annee, mois, jour] = dateInput.split("-");
+    dateFr = jour + "/" + mois + "/" + annee;
+}
+
+doc.text("Date : " + dateFr, 10, y);
+
+    y += 10;
+
+    const inventaire = document.getElementById("inventaire").children;
+
+    for (let i = 0; i < inventaire.length; i++) {
+        const el = inventaire[i];
+
+        // SECTION
+        if (el.classList.contains("section")) {
+            if (y > 260) { doc.addPage(); y = 15; }
+
+            y += 6;
+            doc.setFontSize(12);
+            doc.text(el.textContent.toUpperCase(), 10, y);
+            y += 6;
+        }
+
+        // ITEM
+        if (el.classList.contains("item")) {
+            const cb = el.querySelector("input");
+            const label = cb.value;
+            const ligne = (cb.checked ? "[X] " : "[ ] ") + label;
+
+            doc.setFontSize(10);
+            doc.text(ligne, 15, y);
+            y += 6;
+
+            if (y > 270) {
+                doc.addPage();
+                y = 15;
+            }
+        }
+    }
+
+    // OBSERVATIONS
+    y += 8;
+    if (y > 250) { doc.addPage(); y = 15; }
+
+    doc.setFontSize(12);
+    doc.text("OBSERVATIONS", 10, y);
+    y += 6;
+
+    doc.setFontSize(10);
+    const obs = document.getElementById("observations").value || "Aucune";
+    doc.text(doc.splitTextToSize(obs, 180), 10, y);
+
+    doc.save("Inventaire_VLRTC.pdf");
+}
+</script>
+
+
+</body>
+</html>
