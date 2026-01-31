@@ -177,8 +177,10 @@ doc.text("Date : " + dateFr, 10, y);
             const ligne = (cb.checked ? "[X] " : "[ ] ") + label;
 
             doc.setFontSize(10);
-            doc.text(ligne, 15, y);
-            y += 6;
+            const lignes = doc.splitTextToSize(ligne, 170);
+		doc.text(lignes, 15, y);
+		y += lignes.length * 5;
+
 
             if (y > 270) {
                 doc.addPage();
