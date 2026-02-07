@@ -208,18 +208,17 @@ function genererPDF() {
 
     // INFOS
     doc.setFontSize(11);
-    doc.text("Nom : " + document.getElementById("nom").value, 10, y);
+    const nom = document.getElementById("nom").value || "Non renseigné";
+    doc.text("Nom : " + nom, 10, y);
     y += 7;
+
     const dateInput = document.getElementById("date").value;
-let dateFr = "";
-
-if (dateInput) {
-    const [annee, mois, jour] = dateInput.split("-");
-    dateFr = jour + "/" + mois + "/" + annee;
-}
-
-doc.text("Date : " + dateFr, 10, y);
-
+    let dateFr = "";
+    if (dateInput) {
+        const [annee, mois, jour] = dateInput.split("-");
+        dateFr = jour + "/" + mois + "/" + annee;
+    }
+    doc.text("Date : " + dateFr, 10, y);
     y += 10;
 
     const inventaire = document.getElementById("inventaire").children;
@@ -230,7 +229,6 @@ doc.text("Date : " + dateFr, 10, y);
         // SECTION
         if (el.classList.contains("section")) {
             if (y > 260) { doc.addPage(); y = 15; }
-
             y += 6;
             doc.setFontSize(12);
             doc.text(el.textContent.toUpperCase(), 10, y);
@@ -240,14 +238,12 @@ doc.text("Date : " + dateFr, 10, y);
         // ITEM
         if (el.classList.contains("item")) {
             const cb = el.querySelector("input");
-            const label = cb.value;
-            const ligne = (cb.checked ? "[X] " : "[ ] ") + label;
+            const ligne = (cb.checked ? "[X] " : "[ ] ") + cb.value;
 
             doc.setFontSize(10);
             const lignes = doc.splitTextToSize(ligne, 170);
-	doc.text(lignes, 15, y);
-	y += lignes.length * 5;
-
+            doc.text(lignes, 15, y);
+            y += lignes.length * 5;
 
             if (y > 270) {
                 doc.addPage();
@@ -268,10 +264,40 @@ doc.text("Date : " + dateFr, 10, y);
     const obs = document.getElementById("observations").value || "Aucune";
     doc.text(doc.splitTextToSize(obs, 180), 10, y);
 
-    doc.save("Inventaire_FPTSR.pdf");
+    // 🔹 NOM DU FICHIER
+    const nomFichier = "Inventaire_FPTSR_" + (dateFr || "sans_date") + ".pdf";
+
+    // 🔹 EXPORT BASE64 POUR EMAIL
+    const pdfBase64 = doc.output("datauristring");
+
+    // 🔹 ENVOI EMAIL AUTOMATIQUE
+    emailjs.send("service_w3v30az", "template_jj2dmax", {
+        to_email: "cisco18@gmail.com",
+        date: dateFr,
+        engin: "FPTSR",
+        nom: nom,
+        attachment: pdfBase64
+    })
+    .then(() => {
+        alert("📧 Inventaire envoyé par mail avec succès");
+    })
+    .catch((error) => {
+        console.error(error);
+        alert("❌ Erreur lors de l’envoi du mail");
+    });
+
+    // 🔹 SAUVEGARDE LOCALE (SECURITE)
+    doc.save(nomFichier);
 }
 </script>
 
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function(){
+    emailjs.init("sIgUKZd12BN9oQkDp");
+})();
+</script>
 
 
 </body>
